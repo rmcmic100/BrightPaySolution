@@ -160,7 +160,7 @@ namespace BrightPaySolution.Tests
 
             // Act & Assert: Confirm that exception is thrown with correct message
             var exception = Assert.Throws<KeyNotFoundException>(() => _checkout.Scan("F"));
-            Assert.That(exception.Message, Is.EqualTo("Invalid item. Please scan a valid item"));
+            Assert.That(exception.Message, Is.EqualTo("Invalid item - Please scan a valid item"));
         }
     }
 }
