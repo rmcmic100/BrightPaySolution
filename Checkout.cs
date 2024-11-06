@@ -32,6 +32,7 @@ namespace BrightPaySolution
         // creating a dictionary for the cart to store the item SKU and the quantity
         private readonly Dictionary<string, int> cart = new Dictionary<string, int>();
 
+        // method to scan items, including exception for an item not included in the items dictionary
         public void Scan(string item)
         {
             if (items.ContainsKey(item))
@@ -50,6 +51,7 @@ namespace BrightPaySolution
             }
         }
 
+        // method to tally the total price of the items in the cart with logic to apply multiprice discounts
         public int GetTotalPrice()
         {
             int totalPrice = 0;
