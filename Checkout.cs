@@ -52,7 +52,24 @@ namespace BrightPaySolution
 
         public int GetTotalPrice()
         {
+            int totalPrice = 0;
 
+            foreach (var item in cart)
+            {
+                if (multipriceDeals.ContainsKey(item.Key))
+                {
+                    int noOfMultipriceDeals = item.Value / multipriceDeals[item.Key].quantity;
+                    int remainder = item.Value % multipriceDeals[item.Key].quantity;
+
+                    totalPrice += noOfMultipriceDeals * multipriceDeals[item.Key].price;
+                    totalPrice += remainder * items[item.Key];
+                } else
+                {
+                    totalPrice += item.Value;
+                }
+            }
+
+            return totalPrice;
         }
     }
 }
