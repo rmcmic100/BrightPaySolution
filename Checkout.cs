@@ -46,7 +46,7 @@ namespace BrightPaySolution
                 }
             } else
             {
-                Console.WriteLine("Invalid item - Please scan a valid item");
+                throw new KeyNotFoundException("Invalid item - Please scan a valid item");
             }
         }
 
@@ -56,7 +56,7 @@ namespace BrightPaySolution
 
             foreach (var item in cart)
             {
-                if (multipriceDeals.ContainsKey(item.Key))
+                if (multipriceDeals.ContainsKey(item.Key) && item.Value >= multipriceDeals[item.Key].quantity)
                 {
                     int noOfMultipriceDeals = item.Value / multipriceDeals[item.Key].quantity;
                     int remainder = item.Value % multipriceDeals[item.Key].quantity;
@@ -65,7 +65,7 @@ namespace BrightPaySolution
                     totalPrice += remainder * items[item.Key];
                 } else
                 {
-                    totalPrice += item.Value;
+                    totalPrice += items[item.Key] * item.Value;
                 }
             }
 

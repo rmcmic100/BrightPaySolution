@@ -155,11 +155,8 @@ namespace BrightPaySolution.Tests
         [Test(Description = "Testing that scanning an item not on the list throws an informative error")]
         public void ScanningInvalidItem()
         {
-            // Arrange: Scan invalid item
-            _checkout.Scan("E");
-
-            // Act & Assert: Confirm that exception is thrown with correct message
-            var exception = Assert.Throws<KeyNotFoundException>(() => _checkout.Scan("F"));
+            // Arrange, Act & Assert: Confirm that exception is thrown with correct message after scanning an invalid item
+            var exception = Assert.Throws<KeyNotFoundException>(() => _checkout.Scan("E"));
             Assert.That(exception.Message, Is.EqualTo("Invalid item - Please scan a valid item"));
         }
     }
